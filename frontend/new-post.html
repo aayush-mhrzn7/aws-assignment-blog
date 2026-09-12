@@ -1,12 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head><title>New Post (debug)</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>New Post</title>
+  <script src="config.js"></script>
+</head>
 <body>
-  <h1>Login redirect debug</h1>
-  <p>If login worked, you should see a token below:</p>
-  <pre id="debug"></pre>
+  <h1>New Post</h1>
+  <p><strong>Student ID: 79010396</strong></p>
+  <nav><a href="blog.html">Back to Blog</a></nav>
+
+  <div id="loginBox">
+    <h2>Log in</h2>
+    <input id="email" type="email" placeholder="Email"><br>
+    <input id="password" type="password" placeholder="Password"><br>
+    <button onclick="login()">Log in</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
+
+  <div id="postBox" style="display:none;">
+    <h2>Create Post</h2>
+    <input id="title" placeholder="Title"><br>
+    <input id="author" placeholder="Author"><br>
+    <textarea id="content" placeholder="Content"></textarea><br>
+    <input id="tags" placeholder="Tags (comma separated)"><br>
+    <input id="feature_image" placeholder="Feature image URL (optional)"><br>
+    <button onclick="createPost()">Publish</button>
+    <p id="postResult"></p>
+  </div>
+
   <script>
-    document.getElementById('debug').textContent = window.location.hash;
+    function getToken() {
+      return sessionStorage.getItem('idToken');
+    }
+
+    function updateView() {
+      const token = getToken();
+      document.getElementById('loginBox').style.display = token ? 'none' : 'block';
+      document.getElementById('postBox').style.display = token ? 'block' : 'none';
+    }
+
+    async function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('https://cognito-idp.us-east-1.amazonaws.com/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-amz-json-1.1',
+          'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth'
+        },
+        body: JSON.stringify({
+          AuthFlow: 'USER_PASSWORD_AUTH',
+          ClientId: COGNITO_CLIENT_ID,
+          AuthParameters: { USERNAME: email, PASSWORD: password }
+        })
+      });
+
+      const data = await res.json();
+      if (data.AuthenticationResult) {
+        sessionStorage.setItem('idToken', data.AuthenticationResult.IdToken);
+        updateView();
+      } else {
+        document.getElementById('loginError').textContent = data.message || 'Login failed';
+      }
+    }
+
+    async function createPost() {
+      const payload = {
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        content: document.getElementById('content').value,
+        tags: document.getElementById('tags').value.split(',').map(t => t.trim()).filter(Boolean),
+        feature_image: document.getElementById('feature_image').value || undefined
+      };
+
+      const res = await fetch(`${API_BASE_URL}/posts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': getToken()
+        },
+        body: JSON.stringify(payload)
+      });
+
+      document.getElementById('postResult').textContent = res.ok
+        ? 'Post created! Check the blog page.'
+        : 'Failed to create post.';
+    }
+
+    updateView();
   </script>
 </body>
 </html>
