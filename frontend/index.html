@@ -1,14 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aayush Maharjan — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,600;1,400&family=Newsreader:ital@1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111111;
+      --fg: #eeeeee;
+      --muted: #b4b4b4;
+      --subtle: #6e6e6e;
+      --border: #2a2a2a;
+      --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+      --font-serif: "Newsreader", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 128px 24px 80px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .id {
+      margin: 0 0 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    p { margin: 0 0 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
+    }
+
+    strong { font-weight: 600; }
+
+    section { margin-bottom: 48px; }
+
+    h2 {
+      display: inline-block;
+      margin: 0 0 20px;
+      font-size: 15px;
+      font-weight: 400;
+      border-bottom: 1px solid rgba(238, 238, 238, 0.3);
+      padding-bottom: 4px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 10.5rem 1fr;
+      gap: 0 1.5rem;
+      padding: 10px 0;
+    }
+
+    .period { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+    .muted { color: var(--muted); }
+    .item { margin-bottom: 14px; }
+    .item-title { margin: 0; }
+    .item-desc { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 640px) {
+      main { padding-top: 64px; }
+      .row { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Aayush Maharjan</h1>
-  <p><strong>Student ID: 79010396</strong></p>
-  <p>Cloud computing student — this site is a serverless portfolio + blog built on AWS
-     (S3, Lambda, API Gateway, DynamoDB, Cognito, CloudWatch, deployed via AWS SAM).</p>
-  <nav><a href="blog.html">View Blog</a></nav>
+  <main>
+    <section>
+      <h1>Aayush Maharjan</h1>
+      <p class="id"><strong>Student ID: 79010396</strong></p>
+      <p>
+        <em>Building interfaces.</em>
+        Frontend-focused Software Engineer from <strong>Kathmandu</strong>
+        crafting interfaces that feel fast, accessible, and intentional mostly with React and Next.js.
+        I'm 22.
+      </p>
+      <p>
+        I've spent the last couple of years building for the web — currently as an Associate Software Engineer at RANE Network,
+        and before that shipping production apps at Vrit Technologies and full-stack systems as a MERN intern at KishanCare.
+      </p>
+      <p>
+        Cloud computing student. This site is a serverless portfolio and blog built on AWS
+        (S3, Lambda, API Gateway, DynamoDB, Cognito, CloudWatch, deployed via AWS SAM).
+      </p>
+    </section>
+
+    <section>
+      <h2>Building</h2>
+      <div class="item">
+        <p class="item-title">Optimist CLI</p>
+        <p class="item-desc">Zero-config asset optimizer for WebP and WebM.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="item">
+        <p class="item-title">Trackfluence</p>
+        <p class="item-desc">Analytics platform for creators with real-time link insights.</p>
+      </div>
+      <div class="item">
+        <p class="item-title">HLS Video Pipeline</p>
+        <p class="item-desc">Production-ready video transcoding with FFmpeg and BullMQ.</p>
+      </div>
+      <div class="item">
+        <p class="item-title">Better Mail</p>
+        <p class="item-desc">AI email rewriter for Gmail and Outlook with reply modes.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="row">
+        <span class="period">Feb 2026 – Present</span>
+        <span>Associate Software Engineer · RANE Network</span>
+      </div>
+      <div class="row">
+        <span class="period">Dec 2024 – Sept 2025</span>
+        <span>Frontend Developer · Vrit Technologies</span>
+      </div>
+      <div class="row">
+        <span class="period">Oct 2024 – Dec 2024</span>
+        <span>MERN Intern · KishanCare</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Now</h2>
+      <p>
+        I like the process of developing something from the start, taking an idea from zero and shaping it into something real.
+        The part I never get tired of is watching something rough slowly become something you'd actually want to use.
+        Outside work, you'll find me on Drake, driving on the road, or sipping on my third coffee.
+      </p>
+    </section>
+
+    <section>
+      <h2>Connect</h2>
+      <p>
+        Reach me at GitHub, LinkedIn, or aayushmaharjan497@gmail.com.
+      </p>
+    </section>
+  </main>
 </body>
 </html>

@@ -1,33 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>New Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Post — Aayush Maharjan</title>
   <script src="config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,600;1,400&family=Newsreader:ital@1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111111;
+      --fg: #eeeeee;
+      --muted: #b4b4b4;
+      --subtle: #6e6e6e;
+      --border: #2a2a2a;
+      --field: #191919;
+      --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 128px 24px 80px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .id {
+      margin: 0 0 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    h2 {
+      display: inline-block;
+      margin: 0 0 20px;
+      font-size: 15px;
+      font-weight: 400;
+      border-bottom: 1px solid rgba(238, 238, 238, 0.3);
+      padding-bottom: 4px;
+    }
+
+    nav { margin-bottom: 48px; }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.27);
+      text-underline-offset: 3px;
+    }
+
+    nav a:hover { color: var(--fg); }
+
+    section { margin-bottom: 8px; }
+
+    input,
+    textarea {
+      width: 100%;
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--field);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.5;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: var(--subtle); }
+
+    input:focus,
+    textarea:focus { border-color: #606060; }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 4px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover { border-color: #606060; }
+
+    .note {
+      margin: 12px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .error { color: #d66; }
+
+    @media (max-width: 640px) {
+      main { padding-top: 64px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>New Post</h1>
-  <p><strong>Student ID: 79010396</strong></p>
-  <nav><a href="blog.html">Back to Blog</a></nav>
+  <main>
+    <h1>New Post</h1>
+    <p class="id"><strong>Student ID: 79010396</strong></p>
+    <nav><a href="blog.html">Back to Blog</a></nav>
 
-  <div id="loginBox">
-    <h2>Log in</h2>
-    <input id="email" type="email" placeholder="Email"><br>
-    <input id="password" type="password" placeholder="Password"><br>
-    <button onclick="login()">Log in</button>
-    <p id="loginError" style="color:red;"></p>
-  </div>
+    <section id="loginBox">
+      <h2>Log in</h2>
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Log in</button>
+      <p id="loginError" class="note error"></p>
+    </section>
 
-  <div id="postBox" style="display:none;">
-    <h2>Create Post</h2>
-    <input id="title" placeholder="Title"><br>
-    <input id="author" placeholder="Author"><br>
-    <textarea id="content" placeholder="Content"></textarea><br>
-    <input id="tags" placeholder="Tags (comma separated)"><br>
-    <input id="feature_image" placeholder="Feature image URL (optional)"><br>
-    <button onclick="createPost()">Publish</button>
-    <p id="postResult"></p>
-  </div>
+    <section id="postBox" style="display:none;">
+      <h2>Create Post</h2>
+      <input id="title" placeholder="Title">
+      <input id="author" placeholder="Author">
+      <textarea id="content" placeholder="Content"></textarea>
+      <input id="tags" placeholder="Tags (comma separated)">
+      <input id="feature_image" placeholder="Feature image URL (optional)">
+      <button onclick="createPost()">Publish</button>
+      <p id="postResult" class="note"></p>
+    </section>
+  </main>
 
   <script>
     function getToken() {
