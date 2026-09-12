@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  PostsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: s79010396-posts
+      PrimaryKey:
+        Name: postId
+        Type: String
+
+  ListPostsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: s79010396-list-posts
+      CodeUri: functions/
+      Handler: list_posts.handler
+      Runtime: python3.12
+      Role: arn:aws:iam::305909191130:role/LabRole
+      Events:
+        ListPosts:
+          Type: Api
+          Properties:
+            Path: /posts
+            Method: get
+
+Outputs:
+  ApiUrl:
+    Description: Base URL of the API
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
