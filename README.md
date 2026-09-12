@@ -9,5 +9,5 @@ deployed via AWS SAM.
 **API base URL:** https://41v3c2yumk.execute-api.us-east-1.amazonaws.com/Prod
 
 **Test login** (on the "New Post" page, to create a post):
-- Email: `test@example.com`
-- Password: `TestPass123!`
+- Email: `aayush@gmail.com`
+- Password: `Aayush131=`
