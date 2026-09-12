@@ -1,0 +1,104 @@
+{
+  "s79010396-posts": [
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0001-4000-8000-000000000001"},
+      "title": {"S": "Getting Started with Git"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "A quick primer on Git basics for new developers."},
+      "content": {"S": "Git is a distributed version control system that tracks changes to your code over time. Every developer should be comfortable with commit, branch, merge, and rebase before touching a real codebase."},
+      "tags": {"L": [{"S": "git"}, {"S": "version-control"}, {"S": "beginner"}]},
+      "created_at": {"S": "2026-09-01T10:00:00Z"},
+      "updated_at": {"S": "2026-09-01T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0002-4000-8000-000000000002"},
+      "title": {"S": "Understanding REST APIs"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "What REST actually means and why it became the default."},
+      "content": {"S": "REST is an architectural style for web APIs built around stateless requests and standard HTTP verbs. Understanding resources, verbs, and status codes makes every other API you touch easier to reason about."},
+      "tags": {"L": [{"S": "api"}, {"S": "rest"}, {"S": "web-development"}]},
+      "created_at": {"S": "2026-09-02T10:00:00Z"},
+      "updated_at": {"S": "2026-09-02T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0003-4000-8000-000000000003"},
+      "title": {"S": "Clean Code Principles"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Small habits that make code easier to read six months later."},
+      "content": {"S": "Clean code favors clear naming, small functions, and single responsibility over cleverness. The test isn't whether you understand it today — it's whether a stranger understands it in a year."},
+      "tags": {"L": [{"S": "clean-code"}, {"S": "best-practices"}, {"S": "software-engineering"}]},
+      "created_at": {"S": "2026-09-03T10:00:00Z"},
+      "updated_at": {"S": "2026-09-03T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0004-4000-8000-000000000004"},
+      "title": {"S": "Intro to Unit Testing"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Why untested code is just a hypothesis."},
+      "content": {"S": "Unit tests check one small piece of behavior in isolation, fast enough to run on every save. They won't catch every bug, but they catch the regressions that quietly break things you already fixed."},
+      "tags": {"L": [{"S": "testing"}, {"S": "unit-tests"}, {"S": "tdd"}]},
+      "created_at": {"S": "2026-09-04T10:00:00Z"},
+      "updated_at": {"S": "2026-09-04T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0005-4000-8000-000000000005"},
+      "title": {"S": "Design Patterns 101"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Common shapes that keep showing up in object-oriented code."},
+      "content": {"S": "Design patterns are named solutions to recurring design problems — Singleton, Factory, Observer, Strategy. Knowing the name matters less than recognizing the problem they solve."},
+      "tags": {"L": [{"S": "design-patterns"}, {"S": "oop"}, {"S": "architecture"}]},
+      "created_at": {"S": "2026-09-05T10:00:00Z"},
+      "updated_at": {"S": "2026-09-05T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0006-4000-8000-000000000006"},
+      "title": {"S": "What is CI/CD?"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Automating the path from commit to production."},
+      "content": {"S": "Continuous Integration runs your tests on every push; Continuous Deployment ships the result automatically once they pass. Together they turn releases from an event into a non-event."},
+      "tags": {"L": [{"S": "ci-cd"}, {"S": "devops"}, {"S": "automation"}]},
+      "created_at": {"S": "2026-09-06T10:00:00Z"},
+      "updated_at": {"S": "2026-09-06T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0007-4000-8000-000000000007"},
+      "title": {"S": "Database Indexing Basics"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Why the same query can be instant or agonizing."},
+      "content": {"S": "An index lets a database find rows without scanning the whole table, the same way a book's index beats reading every page. The tradeoff is write speed and storage — index what you actually query by."},
+      "tags": {"L": [{"S": "database"}, {"S": "sql"}, {"S": "performance"}]},
+      "created_at": {"S": "2026-09-07T10:00:00Z"},
+      "updated_at": {"S": "2026-09-07T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0008-4000-8000-000000000008"},
+      "title": {"S": "Async Programming Explained"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "How your code keeps moving while it waits."},
+      "content": {"S": "Async code lets a program start a slow operation — a network call, a file read — and keep doing other work instead of blocking until it finishes. Promises, async/await, and callbacks are all ways of expressing that."},
+      "tags": {"L": [{"S": "async"}, {"S": "concurrency"}, {"S": "javascript"}]},
+      "created_at": {"S": "2026-09-08T10:00:00Z"},
+      "updated_at": {"S": "2026-09-08T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0009-4000-8000-000000000009"},
+      "title": {"S": "Debugging Techniques Every Developer Should Know"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "Print statements are fine. Here's what to reach for next."},
+      "content": {"S": "Binary search through your code, reproduce the bug in the smallest possible case, and read the actual error message before guessing. A debugger that lets you step through execution beats print statements every time."},
+      "tags": {"L": [{"S": "debugging"}, {"S": "productivity"}]},
+      "created_at": {"S": "2026-09-09T10:00:00Z"},
+      "updated_at": {"S": "2026-09-09T10:00:00Z"}
+    }}},
+    {"PutRequest": {"Item": {
+      "postId": {"S": "b1a1c111-0010-4000-8000-000000000010"},
+      "title": {"S": "Why Code Reviews Matter"},
+      "author": {"S": "Aayush Maharjan"},
+      "snippet": {"S": "A second pair of eyes catches what the author stopped seeing."},
+      "content": {"S": "Code review isn't about gatekeeping — it's about catching bugs before production, spreading knowledge of the codebase, and keeping style consistent across a team. The best reviews ask questions, not just point out flaws."},
+      "tags": {"L": [{"S": "code-review"}, {"S": "collaboration"}, {"S": "quality"}]},
+      "created_at": {"S": "2026-09-10T10:00:00Z"},
+      "updated_at": {"S": "2026-09-10T10:00:00Z"}
+    }}}
+  ]
+}
