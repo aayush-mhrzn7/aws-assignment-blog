@@ -7,6 +7,6 @@ architecture = "x86_64"
 handler = "list_posts.handler"
 manifest_hash = ""
 packagetype = "Zip"
-functions = ["ListPostsFunction"]
+functions = ["ListPostsFunction", "CreatePostFunction"]
 
 [layer_build_definitions]

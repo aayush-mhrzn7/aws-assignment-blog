@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>New Post (debug)</title></head>
+<body>
+  <h1>Login redirect debug</h1>
+  <p>If login worked, you should see a token below:</p>
+  <pre id="debug"></pre>
+  <script>
+    document.getElementById('debug').textContent = window.location.hash;
+  </script>
+</body>
+</html>

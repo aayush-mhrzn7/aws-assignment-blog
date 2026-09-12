@@ -8,6 +8,22 @@ Resources:
       PrimaryKey:
         Name: postId
         Type: String
+  BlogApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: s79010396-api
+      StageName: Prod
+      Cors:
+        AllowMethods: '''GET,POST,OPTIONS'''
+        AllowHeaders: '''Content-Type,Authorization'''
+        AllowOrigin: '''*'''
+      Auth:
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn:
+              Fn::GetAtt:
+              - UserPool
+              - Arn
   ListPostsFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -20,10 +36,32 @@ Resources:
         ListPosts:
           Type: Api
           Properties:
+            RestApiId:
+              Ref: BlogApi
             Path: /posts
             Method: get
     Metadata:
       SamResourceId: ListPostsFunction
+  CreatePostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: s79010396-create-post
+      CodeUri: CreatePostFunction
+      Handler: create_post.handler
+      Runtime: python3.12
+      Role: arn:aws:iam::305909191130:role/LabRole
+      Events:
+        CreatePost:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: BlogApi
+            Path: /posts
+            Method: post
+            Auth:
+              Authorizer: CognitoAuthorizer
+    Metadata:
+      SamResourceId: CreatePostFunction
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -48,14 +86,47 @@ Resources:
           Action: s3:GetObject
           Resource:
             Fn::Sub: ${SiteBucket.Arn}/*
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: s79010396-user-pool
+      AutoVerifiedAttributes:
+      - email
+      UsernameAttributes:
+      - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          RequireUppercase: false
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: s79010396-app-client
+      UserPoolId:
+        Ref: UserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+      - ALLOW_USER_PASSWORD_AUTH
+      - ALLOW_REFRESH_TOKEN_AUTH
 Outputs:
   ApiUrl:
     Description: Base URL of the API
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+      Fn::Sub: https://${BlogApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
   SiteUrl:
     Description: Portfolio/blog website URL
     Value:
       Fn::GetAtt:
       - SiteBucket
       - WebsiteURL
+  UserPoolId:
+    Description: Cognito User Pool ID
+    Value:
+      Ref: UserPool
+  UserPoolClientId:
+    Description: Cognito App Client ID
+    Value:
+      Ref: UserPoolClient
