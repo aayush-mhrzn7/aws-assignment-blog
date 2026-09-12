@@ -24,8 +24,38 @@ Resources:
             Method: get
     Metadata:
       SamResourceId: ListPostsFunction
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: s79010396-site
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: SiteBucket
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal: '*'
+          Action: s3:GetObject
+          Resource:
+            Fn::Sub: ${SiteBucket.Arn}/*
 Outputs:
   ApiUrl:
     Description: Base URL of the API
     Value:
       Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  SiteUrl:
+    Description: Portfolio/blog website URL
+    Value:
+      Fn::GetAtt:
+      - SiteBucket
+      - WebsiteURL

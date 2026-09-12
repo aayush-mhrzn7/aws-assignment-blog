@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <script src="config.js"></script>
+</head>
+<body>
+  <h1>Blog</h1>
+  <p><strong>Student ID: 79010396</strong></p>
+  <nav><a href="index.html">Back to Portfolio</a></nav>
+  <div id="posts">Loading...</div>
+
+  <script>
+    fetch(`${API_BASE_URL}/posts`)
+      .then(res => res.json())
+      .then(posts => {
+        const container = document.getElementById('posts');
+        if (posts.length === 0) {
+          container.innerHTML = "<p>No posts yet.</p>";
+          return;
+        }
+        container.innerHTML = posts.map(p => `
+          <article>
+            <h2>${p.title}</h2>
+            <p><em>by ${p.author}</em></p>
+            <p>${p.content}</p>
+          </article>
+          <hr>
+        `).join('');
+      })
+      .catch(err => {
+        document.getElementById('posts').innerHTML = "<p>Failed to load posts.</p>";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
